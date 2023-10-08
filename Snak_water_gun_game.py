@@ -7,16 +7,27 @@ def check(player1, player2):
         return -1
     else:
         return 1
-
 def main():
+    print("Welcome to the Snake Water Gun Game!")
+    
+    while True:
+        try:
+            total_games = int(input("How many games would you like to play? Enter a number (1-21): "))
+            if 1 <= total_games <= 21:
+                break
+            else:
+                print("Please enter a number between 1 and 21.")
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+    
     computer_score = 0
     player_score = 0
     
-    for _ in range(7):
+    for _ in range(total_games):
         computer = random.choice(["S", "W", "G"])
         
         while True:
-            player = input("Choose your choice:\tS for Snake\tW for Water\tG for Gun\n").upper()
+            player = input("Choose your choice:\nS for Snake\tW for Water\tG for Gun\n").upper()
             if player in ["S", "W", "G"]:
                 break
             else:
@@ -44,7 +55,12 @@ def main():
         print("It's a tie overall.")
     else:
         print("Sorry, you lost the game.")
+    
+    play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+    if play_again == 'yes':
+        main()
+    else:
+        print("Thank you for playing!")
 
 if __name__ == "__main__":
-    print("Welcome to the Snake Water Gun Game!")
     main()
